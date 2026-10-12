@@ -8,6 +8,7 @@ import urllib.request
 from typing import Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
+
 # تنظیمات logging
 logging.basicConfig(
     level=logging.INFO,
@@ -21,7 +22,6 @@ def is_valid_vless_url(url: str) -> bool:
     """بررسی اعتبار لینک vless"""
     if not url or not url.startswith('vless://'):
         return False
-    # بررسی ساختار کلی URL
     pattern = r'^vless://[a-f0-9\-]{36}@[a-zA-Z0-9\.\-]+:\d+.*$'
     return bool(re.match(pattern, url))
 
@@ -80,7 +80,6 @@ def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
         alpn_raw = params.get('alpn', [''])[0]
         alpn = [x.strip() for x in alpn_raw.split(',') if x.strip()] if alpn_raw else []
 
-        # اعتبارسنجی پورت
         try:
             port_num = int(port)
             if not (1 <= port_num <= 65535):
@@ -106,7 +105,6 @@ def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
             'tag': tag_name,
         }
 
-        # تنظیمات Stream بر اساس نوع شبکه
         if network == 'ws':
             ws_settings: dict = {'headers': {}}
             if host:
@@ -121,7 +119,6 @@ def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
                     'serviceName': grpc_service_name
                 }
 
-        # تنظیمات TLS/Reality
         if security == 'tls':
             outbound['streamSettings']['security'] = 'tls'
             tls_settings: dict = {'allowInsecure': False, 'show': False}
@@ -155,7 +152,10 @@ def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
         return None
 
 
-def generate_full_json_config(outbound_proxies: list[dict]) -> dict:
+def generate_full_json_config(
+    outbound_proxies: list[dict],
+    remarks: str = 'javidsub Intelligent Selection'
+) -> dict:
     """تولید ساختار کامل JSON نهایی"""
     base_config: dict = {
         'dns': {
@@ -240,7 +240,7 @@ def generate_full_json_config(outbound_proxies: list[dict]) -> dict:
                 'statsOutboundUplink': True,
             },
         },
-        'remarks': 'javidsub Intelligent Selection',
+        'remarks': remarks,
         'routing': {
             'balancers': [
                 {
@@ -302,10 +302,8 @@ def generate_full_json_config(outbound_proxies: list[dict]) -> dict:
         'stats': {},
     }
 
-    # افزودن تمام پروکسی‌ها به خروجی‌ها
     base_config['outbounds'].extend(outbound_proxies)
 
-    # افزودن Direct و Block در انتهای لیست Outbounds
     base_config['outbounds'].append(
         {
             'protocol': 'freedom',
@@ -324,6 +322,21 @@ def generate_full_json_config(outbound_proxies: list[dict]) -> dict:
     return base_config
 
 
+def save_raw_configs(filename: str, configs: list[str]) -> None:
+    """ذخیره لیست کانفیگ‌های خام در فایل متنی"""
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(configs))
+    logger.info(f'Saved raw configs to {filename}')
+
+
+def save_final_json(filename: str, outbounds: list[dict], remarks: str) -> None:
+    """ساخت و ذخیره JSON نهایی"""
+    final_json_structure = generate_full_json_config(outbounds, remarks=remarks)
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(final_json_structure, f, ensure_ascii=False, indent=2)
+    logger.info(f'Saved final JSON configuration to {filename}')
+
+
 def main():
     """تابع اصلی برنامه"""
     raw_urls = os.environ.get('SUB_URLS', '')
@@ -334,28 +347,63 @@ def main():
         return
 
     all_raw_configs: list[str] = []
-    seen_urls: set[str] = set()
+    seen_urls_global: set[str] = set()
 
-    # ۱. دریافت تمام لینک‌ها و حذف تکراری‌ها
-    for url in urls:
-        logger.info(f'Processing subscription URL: {url[:50]}...')
+    # ۱. پردازش جداگانه هر لینک ساب + جمع‌آوری برای فایل کلی
+    for sub_index, url in enumerate(urls, start=1):
+        logger.info(f'Processing subscription URL #{sub_index}: {url[:50]}...')
         lines = fetch_and_decode(url)
+
+        url_configs: list[str] = []
+        seen_urls_local: set[str] = set()
+
         for line in lines:
             line = line.strip()
-            if is_valid_vless_url(line) and line not in seen_urls:
-                seen_urls.add(line)
-                all_raw_configs.append(line)
+            if is_valid_vless_url(line) and line not in seen_urls_local:
+                seen_urls_local.add(line)
+                url_configs.append(line)
 
-    logger.info(f'Total valid VLESS configs found (unique): {len(all_raw_configs)}')
+                if line not in seen_urls_global:
+                    seen_urls_global.add(line)
+                    all_raw_configs.append(line)
+
+        if not url_configs:
+            logger.warning(f'No valid VLESS configs found for subscription #{sub_index}')
+            continue
+
+        # ذخیره فایل خام مخصوص همین ساب: javidsub1, javidsub2, ...
+        raw_filename = f'javidsub{sub_index}'
+        save_raw_configs(raw_filename, url_configs)
+
+        # تبدیل کانفیگ‌های همین ساب به outbound
+        parsed_outbounds_url: list[dict] = []
+        for idx, link in enumerate(url_configs, start=1):
+            outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
+            if outbound:
+                parsed_outbounds_url.append(outbound)
+            else:
+                logger.warning(
+                    f'Failed to parse config #{idx} in subscription #{sub_index}: {link[:50]}...'
+                )
+
+        if parsed_outbounds_url:
+            final_filename = f'final_sub{sub_index}.txt'
+            save_final_json(
+                final_filename,
+                parsed_outbounds_url,
+                remarks=f'javidsub{sub_index} Intelligent Selection'
+            )
+        else:
+            logger.warning(f'No outbounds generated for subscription #{sub_index}')
+
+    logger.info(f'Total valid VLESS configs found (unique global): {len(all_raw_configs)}')
 
     if not all_raw_configs:
-        logger.warning('No valid VLESS configurations found!')
+        logger.warning('No valid VLESS configurations found globally!')
         return
 
-    # ۲. ذخیره فایل خام متنی javidsub
-    with open('javidsub', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(all_raw_configs))
-    logger.info('Saved raw configs to javidsub file')
+    # ۲. ذخیره فایل خام کلی javidsub
+    save_raw_configs('javidsub', all_raw_configs)
 
     # ۳. ذخیره بسته‌های ۱۰۰۰ تایی
     chunk_size = 1000
@@ -374,24 +422,28 @@ def main():
             json.dump(json_data, f, ensure_ascii=False, indent=2)
         logger.info(f'Saved chunk {i + 1}/{total_chunks} to {output_file}')
 
-    # ۴. تبدیل لینک‌ها به Outbound برای فایل JSON نهایی
-    parsed_outbounds: list[dict] = []
+    # ۴. تبدیل لینک‌های کلی به Outbound برای final_sub.txt
+    parsed_outbounds_global: list[dict] = []
     for idx, link in enumerate(all_raw_configs, start=1):
         outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
         if outbound:
-            parsed_outbounds.append(outbound)
+            parsed_outbounds_global.append(outbound)
         else:
-            logger.warning(f'Failed to parse config #{idx}: {link[:50]}...')
+            logger.warning(f'Failed to parse global config #{idx}: {link[:50]}...')
 
-    logger.info(f'Successfully parsed {len(parsed_outbounds)} out of {len(all_raw_configs)} configs')
+    logger.info(
+        f'Successfully parsed {len(parsed_outbounds_global)} out of {len(all_raw_configs)} global configs'
+    )
 
-    # ۵. ساخت ساختار کامل JSON
-    final_json_structure = generate_full_json_config(parsed_outbounds)
-
-    # ذخیره مستقیم JSON درون final_sub.txt
-    with open('final_sub.txt', 'w', encoding='utf-8') as f:
-        json.dump(final_json_structure, f, ensure_ascii=False, indent=2)
-    logger.info('Saved final JSON configuration to final_sub.txt')
+    # ۵. ذخیره final_sub.txt کلی
+    if parsed_outbounds_global:
+        save_final_json(
+            'final_sub.txt',
+            parsed_outbounds_global,
+            remarks='javidsub Intelligent Selection'
+        )
+    else:
+        logger.warning('No global outbounds generated, final_sub.txt not created.')
 
 
 if __name__ == '__main__':

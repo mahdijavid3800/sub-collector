@@ -4,7 +4,7 @@ import logging
 import os
 import re
 import urllib.request
-import urllib.error  # <--- اصلاح مهم: ایمپورت صریح
+import urllib.error
 from typing import Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
@@ -250,6 +250,9 @@ def main():
 
     all_raw_configs: list[str] = []
     seen_urls_global: set[str] = set()
+    
+    # لیستی برای ذخیره ساختار JSON هر ساب‌لینک به صورت جداگانه
+    combined_final_configs: list[dict] = []
 
     # ۱. پردازش جداگانه هر لینک ساب
     for sub_index, url in enumerate(urls, start=1):
@@ -283,10 +286,22 @@ def main():
             if outbound:
                 parsed_outbounds_url.append(outbound)
 
-        # ذخیره فایل نهایی مخصوص همین ساب
+        # ذخیره فایل نهایی مخصوص همین ساب و اضافه کردن به لیست کلی
         if parsed_outbounds_url:
+            # تولید ساختار JSON
+            final_json_structure = generate_full_json_config(
+                parsed_outbounds_url, 
+                remarks=f'javidsub{sub_index} Intelligent Selection'
+            )
+            
+            # ذخیره فایل جداگانه (final_sub1.txt, final_sub2.txt, ...)
             final_filename = f'final_sub{sub_index}.txt'
-            save_final_json(final_filename, parsed_outbounds_url, remarks=f'javidsub{sub_index} Intelligent Selection')
+            with open(final_filename, 'w', encoding='utf-8') as f:
+                json.dump(final_json_structure, f, ensure_ascii=False, indent=2)
+            logger.info(f'Saved final JSON configuration to {final_filename}')
+            
+            # اضافه کردن به لیست برای فایل تجمیعی
+            combined_final_configs.append(final_json_structure)
 
     logger.info(f'Total valid VLESS configs found (unique global): {len(all_raw_configs)}')
 
@@ -297,16 +312,15 @@ def main():
     # ۲. ذخیره فایل خام کلی
     save_raw_configs('javidsub', all_raw_configs)
 
-    # ۳. تبدیل لینک‌های کلی به Outbound
-    parsed_outbounds_global: list[dict] = []
-    for idx, link in enumerate(all_raw_configs, start=1):
-        outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
-        if outbound:
-            parsed_outbounds_global.append(outbound)
-
-    # ۴. ذخیره فایل نهایی کلی
-    if parsed_outbounds_global:
-        save_final_json('final_sub.txt', parsed_outbounds_global, remarks='javidsub Intelligent Selection')
+    # ۳. ذخیره فایل نهایی کلی 
+    # (تمام کانفیگ‌ها در یک فایل، اما به صورت جداگانه پشت سر هم و بدون ادغام در یک JSON واحد)
+    if combined_final_configs:
+        with open('final_sub.txt', 'w', encoding='utf-8') as f:
+            for i, config in enumerate(combined_final_configs):
+                json.dump(config, f, ensure_ascii=False, indent=2)
+                if i < len(combined_final_configs) - 1:
+                    f.write('\n\n') # ایجاد فاصله بین کانفیگ‌ها برای خوانایی و جلوگیری از ادغام
+        logger.info('Saved combined final JSON configuration to final_sub.txt (concatenated, not merged)')
 
 
 if __name__ == '__main__':

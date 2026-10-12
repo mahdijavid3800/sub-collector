@@ -1,16 +1,15 @@
-name: Auto Update Subscription Configs
+name: Update Subscription Configs
 
 on:
   schedule:
-    # اجرا هر ۴ ساعت یک بار (دقیقه ۰ ساعت‌های ۰, ۶, ۱۲, ۱۸ UTC)
-    - cron: '0 */4 * * *'
-  workflow_dispatch: # امکان اجرای دستی در هر زمان
+    - cron: '0 */6 * * *' # هر ۶ ساعت یکبار اجرا می‌شود
+  workflow_dispatch: # امکان اجرای دستی
 
 jobs:
-  build-and-update:
+  build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # این خط برای اجازه پوش کردن لازم است
 
     steps:
       - name: Checkout Repository
@@ -19,16 +18,24 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.10'
 
       - name: Run Collector Script
         env:
+          # اینجا لینک‌ها را از Secrets می‌خوانیم
           SUB_URLS: ${{ secrets.SUB_URLS }}
         run: python collector.py
 
-      - name: Commit and Push Changes
+      - name: Remove old json_configs (if exists)
+        run: rm -rf json_configs
+
+      - name: Commit and Push changes
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add javidsub final_sub.txt json_configs/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update configs [$(date -u +'%Y-%m-%d %H:%M UTC')]" && git push)
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # این دستور تمام فایل‌های جدید (javidsub1, final_sub1.txt و...) را اضافه می‌کند
+          git add -A
+          
+          git commit -m "Update subscription files and add individual outputs" || echo "No changes to commit"
+          git push

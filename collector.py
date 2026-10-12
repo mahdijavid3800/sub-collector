@@ -1,7 +1,6 @@
 import base64
 import json
 import logging
-import math
 import os
 import re
 import urllib.request
@@ -342,6 +341,7 @@ def main():
     all_raw_configs: list[str] = []
     seen_urls_global: set[str] = set()
 
+    # ۱. پردازش جداگانه هر لینک ساب
     for sub_index, url in enumerate(urls, start=1):
         logger.info(f'Processing subscription URL #{sub_index}: {url[:50]}...')
         lines = fetch_and_decode(url)
@@ -363,9 +363,11 @@ def main():
             logger.warning(f'No valid VLESS configs found for subscription #{sub_index}')
             continue
 
+        # ذخیره فایل خام مخصوص همین ساب
         raw_filename = f'javidsub{sub_index}'
         save_raw_configs(raw_filename, url_configs)
 
+        # تبدیل کانفیگ‌های همین ساب به outbound
         parsed_outbounds_url: list[dict] = []
         for idx, link in enumerate(url_configs, start=1):
             outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
@@ -376,6 +378,7 @@ def main():
                     f'Failed to parse config #{idx} in subscription #{sub_index}: {link[:50]}...'
                 )
 
+        # ذخیره فایل نهایی مخصوص همین ساب
         if parsed_outbounds_url:
             final_filename = f'final_sub{sub_index}.txt'
             save_final_json(
@@ -392,24 +395,10 @@ def main():
         logger.warning('No valid VLESS configurations found globally!')
         return
 
+    # ۲. ذخیره فایل خام کلی javidsub
     save_raw_configs('javidsub', all_raw_configs)
 
-    chunk_size = 1000
-    total_chunks = math.ceil(len(all_raw_configs) / chunk_size)
-    os.makedirs('json_configs', exist_ok=True)
-
-    for i in range(total_chunks):
-        chunk = all_raw_configs[i * chunk_size : (i + 1) * chunk_size]
-        json_data = {
-            'chunk_index': i + 1,
-            'total_configs': len(chunk),
-            'configs': chunk,
-        }
-        output_file = f'json_configs/configs_{i + 1}.json'
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
-        logger.info(f'Saved chunk {i + 1}/{total_chunks} to {output_file}')
-
+    # ۳. تبدیل لینک‌های کلی به Outbound برای final_sub.txt
     parsed_outbounds_global: list[dict] = []
     for idx, link in enumerate(all_raw_configs, start=1):
         outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
@@ -422,6 +411,7 @@ def main():
         f'Successfully parsed {len(parsed_outbounds_global)} out of {len(all_raw_configs)} global configs'
     )
 
+    # ۴. ذخیره فایل نهایی کلی final_sub.txt
     if parsed_outbounds_global:
         save_final_json(
             'final_sub.txt',

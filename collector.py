@@ -250,77 +250,35 @@ def main():
 
     all_raw_configs: list[str] = []
     seen_urls_global: set[str] = set()
-    
-    # لیستی برای ذخیره ساختار JSON هر ساب‌لینک به صورت جداگانه
-    combined_final_configs: list[dict] = []
 
-    # ۱. پردازش جداگانه هر لینک ساب
+    # ۱. پردازش همه لینک‌ها و جمع‌آوری تمام کانفیگ‌ها
     for sub_index, url in enumerate(urls, start=1):
         logger.info(f'Processing subscription URL #{sub_index}: {url[:60]}...')
         lines = fetch_and_decode(url)
 
-        url_configs: list[str] = []
-        seen_urls_local: set[str] = set()
-
         for line in lines:
             line = line.strip()
-            if is_valid_vless_url(line) and line not in seen_urls_local:
-                seen_urls_local.add(line)
-                url_configs.append(line)
-                if line not in seen_urls_global:
-                    seen_urls_global.add(line)
-                    all_raw_configs.append(line)
-
-        if not url_configs:
-            logger.warning(f'No valid VLESS configs found for subscription #{sub_index}')
-            continue
-
-        # ذخیره فایل خام مخصوص همین ساب
-        raw_filename = f'javidsub{sub_index}'
-        save_raw_configs(raw_filename, url_configs)
-
-        # تبدیل کانفیگ‌های همین ساب به outbound
-        parsed_outbounds_url: list[dict] = []
-        for idx, link in enumerate(url_configs, start=1):
-            outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
-            if outbound:
-                parsed_outbounds_url.append(outbound)
-
-        # ذخیره فایل نهایی مخصوص همین ساب و اضافه کردن به لیست کلی
-        if parsed_outbounds_url:
-            # تولید ساختار JSON
-            final_json_structure = generate_full_json_config(
-                parsed_outbounds_url, 
-                remarks=f'javidsub{sub_index} Intelligent Selection'
-            )
-            
-            # ذخیره فایل جداگانه (final_sub1.txt, final_sub2.txt, ...)
-            final_filename = f'final_sub{sub_index}.txt'
-            with open(final_filename, 'w', encoding='utf-8') as f:
-                json.dump(final_json_structure, f, ensure_ascii=False, indent=2)
-            logger.info(f'Saved final JSON configuration to {final_filename}')
-            
-            # اضافه کردن به لیست برای فایل تجمیعی
-            combined_final_configs.append(final_json_structure)
-
-    logger.info(f'Total valid VLESS configs found (unique global): {len(all_raw_configs)}')
+            if is_valid_vless_url(line) and line not in seen_urls_global:
+                seen_urls_global.add(line)
+                all_raw_configs.append(line)
 
     if not all_raw_configs:
-        logger.warning('No valid VLESS configurations found globally!')
+        logger.warning('No valid VLESS configurations found!')
         return
 
-    # ۲. ذخیره فایل خام کلی
+    # ۲. ذخیره فایل خام کلی (javidsub)
     save_raw_configs('javidsub', all_raw_configs)
 
-    # ۳. ذخیره فایل نهایی کلی 
-    # (تمام کانفیگ‌ها در یک فایل، اما به صورت جداگانه پشت سر هم و بدون ادغام در یک JSON واحد)
-    if combined_final_configs:
-        with open('final_sub.txt', 'w', encoding='utf-8') as f:
-            for i, config in enumerate(combined_final_configs):
-                json.dump(config, f, ensure_ascii=False, indent=2)
-                if i < len(combined_final_configs) - 1:
-                    f.write('\n\n') # ایجاد فاصله بین کانفیگ‌ها برای خوانایی و جلوگیری از ادغام
-        logger.info('Saved combined final JSON configuration to final_sub.txt (concatenated, not merged)')
+    # ۳. تبدیل تمام لینک‌ها به Outbound
+    parsed_outbounds_global: list[dict] = []
+    for idx, link in enumerate(all_raw_configs, start=1):
+        outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
+        if outbound:
+            parsed_outbounds_global.append(outbound)
+
+    # ۴. ذخیره فایل نهایی کلی (final_sub.txt) - یک JSON معتبر با تمام کانفیگ‌ها
+    if parsed_outbounds_global:
+        save_final_json('final_sub.txt', parsed_outbounds_global, remarks='javidsub Intelligent Selection')
 
 
 if __name__ == '__main__':

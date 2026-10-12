@@ -5,11 +5,11 @@ import math
 import os
 import re
 import urllib.request
+import urllib.error
 from typing import Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
 
-# تنظیمات logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -19,7 +19,6 @@ logger = logging.getLogger(__name__)
 
 
 def is_valid_vless_url(url: str) -> bool:
-    """بررسی اعتبار لینک vless"""
     if not url or not url.startswith('vless://'):
         return False
     pattern = r'^vless://[a-f0-9\-]{36}@[a-zA-Z0-9\.\-]+:\d+.*$'
@@ -27,7 +26,6 @@ def is_valid_vless_url(url: str) -> bool:
 
 
 def fetch_and_decode(url: str) -> list[str]:
-    """دریافت و دکود کردن محتوای لینک ساب"""
     try:
         req = urllib.request.Request(
             url,
@@ -51,7 +49,6 @@ def fetch_and_decode(url: str) -> list[str]:
 
 
 def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
-    """تبدیل لینک vless:// به آبجکت outbound در Xray"""
     try:
         if not is_valid_vless_url(vless_url):
             logger.warning(f'Invalid VLESS URL format: {vless_url[:50]}...')
@@ -156,7 +153,6 @@ def generate_full_json_config(
     outbound_proxies: list[dict],
     remarks: str = 'javidsub Intelligent Selection'
 ) -> dict:
-    """تولید ساختار کامل JSON نهایی"""
     base_config: dict = {
         'dns': {
             'hosts': {
@@ -323,14 +319,12 @@ def generate_full_json_config(
 
 
 def save_raw_configs(filename: str, configs: list[str]) -> None:
-    """ذخیره لیست کانفیگ‌های خام در فایل متنی"""
     with open(filename, 'w', encoding='utf-8') as f:
         f.write('\n'.join(configs))
     logger.info(f'Saved raw configs to {filename}')
 
 
 def save_final_json(filename: str, outbounds: list[dict], remarks: str) -> None:
-    """ساخت و ذخیره JSON نهایی"""
     final_json_structure = generate_full_json_config(outbounds, remarks=remarks)
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(final_json_structure, f, ensure_ascii=False, indent=2)
@@ -338,7 +332,6 @@ def save_final_json(filename: str, outbounds: list[dict], remarks: str) -> None:
 
 
 def main():
-    """تابع اصلی برنامه"""
     raw_urls = os.environ.get('SUB_URLS', '')
     urls = [u.strip() for u in raw_urls.splitlines() if u.strip()]
 
@@ -349,7 +342,6 @@ def main():
     all_raw_configs: list[str] = []
     seen_urls_global: set[str] = set()
 
-    # ۱. پردازش جداگانه هر لینک ساب + جمع‌آوری برای فایل کلی
     for sub_index, url in enumerate(urls, start=1):
         logger.info(f'Processing subscription URL #{sub_index}: {url[:50]}...')
         lines = fetch_and_decode(url)
@@ -371,11 +363,9 @@ def main():
             logger.warning(f'No valid VLESS configs found for subscription #{sub_index}')
             continue
 
-        # ذخیره فایل خام مخصوص همین ساب: javidsub1, javidsub2, ...
         raw_filename = f'javidsub{sub_index}'
         save_raw_configs(raw_filename, url_configs)
 
-        # تبدیل کانفیگ‌های همین ساب به outbound
         parsed_outbounds_url: list[dict] = []
         for idx, link in enumerate(url_configs, start=1):
             outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
@@ -402,10 +392,8 @@ def main():
         logger.warning('No valid VLESS configurations found globally!')
         return
 
-    # ۲. ذخیره فایل خام کلی javidsub
     save_raw_configs('javidsub', all_raw_configs)
 
-    # ۳. ذخیره بسته‌های ۱۰۰۰ تایی
     chunk_size = 1000
     total_chunks = math.ceil(len(all_raw_configs) / chunk_size)
     os.makedirs('json_configs', exist_ok=True)
@@ -422,7 +410,6 @@ def main():
             json.dump(json_data, f, ensure_ascii=False, indent=2)
         logger.info(f'Saved chunk {i + 1}/{total_chunks} to {output_file}')
 
-    # ۴. تبدیل لینک‌های کلی به Outbound برای final_sub.txt
     parsed_outbounds_global: list[dict] = []
     for idx, link in enumerate(all_raw_configs, start=1):
         outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
@@ -435,7 +422,6 @@ def main():
         f'Successfully parsed {len(parsed_outbounds_global)} out of {len(all_raw_configs)} global configs'
     )
 
-    # ۵. ذخیره final_sub.txt کلی
     if parsed_outbounds_global:
         save_final_json(
             'final_sub.txt',

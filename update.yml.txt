@@ -1,0 +1,41 @@
+name: Update Subscription Configs
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # هر ۶ ساعت یکبار اجرا می‌شود
+  workflow_dispatch: # امکان اجرای دستی
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # این خط برای اجازه پوش کردن لازم است
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Collector Script
+        env:
+          # اینجا لینک‌ها را از Secrets می‌خوانیم
+          SUB_URLS: ${{ secrets.SUB_URLS }}
+        run: python collector.py
+
+      - name: Remove old json_configs (if exists)
+        run: rm -rf json_configs
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # این دستور تمام فایل‌های جدید (javidsub1, final_sub1.txt و...) را اضافه می‌کند
+          git add -A
+          
+          git commit -m "Update subscription files and add individual outputs" || echo "No changes to commit"
+          git push

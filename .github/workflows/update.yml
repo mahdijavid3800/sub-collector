@@ -22,20 +22,21 @@ jobs:
 
       - name: Run Collector Script
         env:
-          # اینجا لینک‌ها را از Secrets می‌خوانیم
           SUB_URLS: ${{ secrets.SUB_URLS }}
         run: python collector.py
 
-      - name: Remove old json_configs (if exists)
-        run: rm -rf json_configs
+      - name: Remove old individual files
+        run: |
+          # حذف فایل‌های اضافی تولید شده توسط کد قبلی
+          rm -f final_sub[0-9].txt
+          rm -f javidsub[0-9]
 
       - name: Commit and Push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # این دستور تمام فایل‌های جدید (javidsub1, final_sub1.txt و...) را اضافه می‌کند
           git add -A
           
-          git commit -m "Update subscription files and add individual outputs" || echo "No changes to commit"
+          git commit -m "Update subscription: single valid JSON config file" || echo "No changes to commit"
           git push

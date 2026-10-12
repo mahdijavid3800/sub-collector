@@ -4,7 +4,7 @@ import logging
 import os
 import re
 import urllib.request
-import urllib.error
+import urllib.error  # <--- اصلاح مهم: ایمپورت صریح
 from typing import Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
@@ -25,6 +25,7 @@ def is_valid_vless_url(url: str) -> bool:
 
 
 def fetch_and_decode(url: str) -> list[str]:
+    """دریافت و دکود کردن محتوای لینک ساب"""
     try:
         req = urllib.request.Request(
             url,
@@ -33,7 +34,9 @@ def fetch_and_decode(url: str) -> list[str]:
         with urllib.request.urlopen(req, timeout=15) as response:
             content = response.read().decode('utf-8').strip()
             try:
-                decoded = base64.b64decode(content).decode('utf-8')
+                # تلاش برای دکود Base64 (با در نظر گرفتن padding)
+                padded = content + '=' * (-len(content) % 4)
+                decoded = base64.b64decode(padded).decode('utf-8')
                 logger.info(f'Successfully decoded base64 content from {url}')
                 return decoded.splitlines()
             except Exception:
@@ -48,6 +51,7 @@ def fetch_and_decode(url: str) -> list[str]:
 
 
 def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
+    """تبدیل لینک vless:// به آبجکت outbound در Xray"""
     try:
         if not is_valid_vless_url(vless_url):
             logger.warning(f'Invalid VLESS URL format: {vless_url[:50]}...')
@@ -66,7 +70,6 @@ def parse_vless_to_outbound(vless_url: str, tag_name: str) -> Optional[dict]:
             return None
 
         params = parse_qs(parsed.query)
-
         network = params.get('type', ['tcp'])[0]
         security = params.get('security', ['none'])[0]
         path = unquote(params.get('path', ['/'])[0])
@@ -152,46 +155,22 @@ def generate_full_json_config(
     outbound_proxies: list[dict],
     remarks: str = 'javidsub Intelligent Selection'
 ) -> dict:
+    """تولید ساختار کامل JSON نهایی"""
     base_config: dict = {
         'dns': {
             'hosts': {
                 'domain:googleapis.cn': 'googleapis.com',
-                'dns.alidns.com': [
-                    '223.5.5.5',
-                    '223.6.6.6',
-                    '2400:3200::1',
-                    '2400:3200:baba::1',
-                ],
-                'one.one.one.one': [
-                    '1.1.1.1',
-                    '1.0.0.1',
-                    '2606:4700:4700::1111',
-                    '2606:4700:4700::1001',
-                ],
-                'dns.cloudflare.com': [
-                    '104.16.132.229',
-                    '104.16.133.229',
-                    '2606:4700::6810:84e5',
-                    '2606:4700::6810:85e5',
-                ],
-                'dns.google': [
-                    '8.8.8.8',
-                    '8.8.4.4',
-                    '2001:4860:4860::8888',
-                    '2001:4860:4860::8844',
-                ],
+                'dns.alidns.com': ['223.5.5.5', '223.6.6.6', '2400:3200::1', '2400:3200:baba::1'],
+                'one.one.one.one': ['1.1.1.1', '1.0.0.1', '2606:4700:4700::1111', '2606:4700:4700::1001'],
+                'dns.cloudflare.com': ['104.16.132.229', '104.16.133.229', '2606:4700::6810:84e5', '2606:4700::6810:85e5'],
+                'dns.google': ['8.8.8.8', '8.8.4.4', '2001:4860:4860::8888', '2001:4860:4860::8844'],
             },
             'servers': [
                 '1.1.1.1',
                 {'address': '1.1.1.1', 'domains': ['geosite:google']},
                 {
                     'address': '223.5.5.5',
-                    'domains': [
-                        'domain:alidns.com',
-                        'domain:doh.pub',
-                        'domain:dot.pub',
-                        'geosite:cn',
-                    ],
+                    'domains': ['domain:alidns.com', 'domain:doh.pub', 'domain:dot.pub', 'geosite:cn'],
                     'expectIPs': ['geoip:cn'],
                     'skipFallback': True,
                     'tag': 'domestic-dns',
@@ -205,11 +184,7 @@ def generate_full_json_config(
                 'port': 10808,
                 'protocol': 'socks',
                 'settings': {'auth': 'noauth', 'udp': True, 'userLevel': 8},
-                'sniffing': {
-                    'destOverride': ['http', 'tls'],
-                    'enabled': True,
-                    'routeOnly': False,
-                },
+                'sniffing': {'destOverride': ['http', 'tls'], 'enabled': True, 'routeOnly': False},
                 'tag': 'socks',
             }
         ],
@@ -222,97 +197,31 @@ def generate_full_json_config(
         },
         'outbounds': [],
         'policy': {
-            'levels': {
-                '8': {
-                    'connIdle': 300,
-                    'downlinkOnly': 1,
-                    'handshake': 4,
-                    'uplinkOnly': 1,
-                }
-            },
-            'system': {
-                'statsOutboundDownlink': True,
-                'statsOutboundUplink': True,
-            },
+            'levels': {'8': {'connIdle': 300, 'downlinkOnly': 1, 'handshake': 4, 'uplinkOnly': 1}},
+            'system': {'statsOutboundDownlink': True, 'statsOutboundUplink': True},
         },
         'remarks': remarks,
         'routing': {
-            'balancers': [
-                {
-                    'selector': ['proxy-'],
-                    'strategy': {'type': 'leastPing'},
-                    'tag': 'proxy-round',
-                }
-            ],
+            'balancers': [{'selector': ['proxy-'], 'strategy': {'type': 'leastPing'}, 'tag': 'proxy-round'}],
             'domainStrategy': 'AsIs',
             'rules': [
-                {
-                    'network': 'udp',
-                    'outboundTag': 'block',
-                    'port': '443',
-                    'type': 'field',
-                },
-                {
-                    'balancerTag': 'proxy-round',
-                    'domain': ['geosite:google'],
-                    'type': 'field',
-                },
-                {
-                    'ip': ['geoip:private'],
-                    'outboundTag': 'direct',
-                    'type': 'field',
-                },
-                {
-                    'domain': ['geosite:private'],
-                    'outboundTag': 'direct',
-                    'type': 'field',
-                },
-                {
-                    'ip': ['geoip:cn'],
-                    'outboundTag': 'direct',
-                    'type': 'field',
-                },
-                {
-                    'domain': ['geosite:cn'],
-                    'outboundTag': 'direct',
-                    'type': 'field',
-                },
-                {
-                    'inboundTag': ['domestic-dns'],
-                    'outboundTag': 'direct',
-                    'type': 'field',
-                },
-                {
-                    'balancerTag': 'proxy-round',
-                    'inboundTag': ['dns-module'],
-                    'type': 'field',
-                },
-                {
-                    'balancerTag': 'proxy-round',
-                    'network': 'tcp,udp',
-                    'type': 'field',
-                },
+                {'network': 'udp', 'outboundTag': 'block', 'port': '443', 'type': 'field'},
+                {'balancerTag': 'proxy-round', 'domain': ['geosite:google'], 'type': 'field'},
+                {'ip': ['geoip:private'], 'outboundTag': 'direct', 'type': 'field'},
+                {'domain': ['geosite:private'], 'outboundTag': 'direct', 'type': 'field'},
+                {'ip': ['geoip:cn'], 'outboundTag': 'direct', 'type': 'field'},
+                {'domain': ['geosite:cn'], 'outboundTag': 'direct', 'type': 'field'},
+                {'inboundTag': ['domestic-dns'], 'outboundTag': 'direct', 'type': 'field'},
+                {'balancerTag': 'proxy-round', 'inboundTag': ['dns-module'], 'type': 'field'},
+                {'balancerTag': 'proxy-round', 'network': 'tcp,udp', 'type': 'field'},
             ],
         },
         'stats': {},
     }
 
     base_config['outbounds'].extend(outbound_proxies)
-
-    base_config['outbounds'].append(
-        {
-            'protocol': 'freedom',
-            'settings': {'domainStrategy': 'UseIP'},
-            'tag': 'direct',
-        }
-    )
-    base_config['outbounds'].append(
-        {
-            'protocol': 'blackhole',
-            'settings': {'response': {'type': 'http'}},
-            'tag': 'block',
-        }
-    )
+    base_config['outbounds'].append({'protocol': 'freedom', 'settings': {'domainStrategy': 'UseIP'}, 'tag': 'direct'})
+    base_config['outbounds'].append({'protocol': 'blackhole', 'settings': {'response': {'type': 'http'}}, 'tag': 'block'})
 
     return base_config
 
@@ -331,6 +240,7 @@ def save_final_json(filename: str, outbounds: list[dict], remarks: str) -> None:
 
 
 def main():
+    """تابع اصلی برنامه"""
     raw_urls = os.environ.get('SUB_URLS', '')
     urls = [u.strip() for u in raw_urls.splitlines() if u.strip()]
 
@@ -343,7 +253,7 @@ def main():
 
     # ۱. پردازش جداگانه هر لینک ساب
     for sub_index, url in enumerate(urls, start=1):
-        logger.info(f'Processing subscription URL #{sub_index}: {url[:50]}...')
+        logger.info(f'Processing subscription URL #{sub_index}: {url[:60]}...')
         lines = fetch_and_decode(url)
 
         url_configs: list[str] = []
@@ -354,7 +264,6 @@ def main():
             if is_valid_vless_url(line) and line not in seen_urls_local:
                 seen_urls_local.add(line)
                 url_configs.append(line)
-
                 if line not in seen_urls_global:
                     seen_urls_global.add(line)
                     all_raw_configs.append(line)
@@ -373,21 +282,11 @@ def main():
             outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
             if outbound:
                 parsed_outbounds_url.append(outbound)
-            else:
-                logger.warning(
-                    f'Failed to parse config #{idx} in subscription #{sub_index}: {link[:50]}...'
-                )
 
         # ذخیره فایل نهایی مخصوص همین ساب
         if parsed_outbounds_url:
             final_filename = f'final_sub{sub_index}.txt'
-            save_final_json(
-                final_filename,
-                parsed_outbounds_url,
-                remarks=f'javidsub{sub_index} Intelligent Selection'
-            )
-        else:
-            logger.warning(f'No outbounds generated for subscription #{sub_index}')
+            save_final_json(final_filename, parsed_outbounds_url, remarks=f'javidsub{sub_index} Intelligent Selection')
 
     logger.info(f'Total valid VLESS configs found (unique global): {len(all_raw_configs)}')
 
@@ -395,31 +294,19 @@ def main():
         logger.warning('No valid VLESS configurations found globally!')
         return
 
-    # ۲. ذخیره فایل خام کلی javidsub
+    # ۲. ذخیره فایل خام کلی
     save_raw_configs('javidsub', all_raw_configs)
 
-    # ۳. تبدیل لینک‌های کلی به Outbound برای final_sub.txt
+    # ۳. تبدیل لینک‌های کلی به Outbound
     parsed_outbounds_global: list[dict] = []
     for idx, link in enumerate(all_raw_configs, start=1):
         outbound = parse_vless_to_outbound(link, tag_name=f'proxy-{idx}')
         if outbound:
             parsed_outbounds_global.append(outbound)
-        else:
-            logger.warning(f'Failed to parse global config #{idx}: {link[:50]}...')
 
-    logger.info(
-        f'Successfully parsed {len(parsed_outbounds_global)} out of {len(all_raw_configs)} global configs'
-    )
-
-    # ۴. ذخیره فایل نهایی کلی final_sub.txt
+    # ۴. ذخیره فایل نهایی کلی
     if parsed_outbounds_global:
-        save_final_json(
-            'final_sub.txt',
-            parsed_outbounds_global,
-            remarks='javidsub Intelligent Selection'
-        )
-    else:
-        logger.warning('No global outbounds generated, final_sub.txt not created.')
+        save_final_json('final_sub.txt', parsed_outbounds_global, remarks='javidsub Intelligent Selection')
 
 
 if __name__ == '__main__':

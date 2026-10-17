@@ -95,7 +95,7 @@
         "vnext": [
           {
             "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2083,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -112,7 +112,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/bDUUTji1GRNP?ed=2048"
+          "path": "/ttdxcjcGHaf8?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -137,7 +137,7 @@
         "vnext": [
           {
             "address": "creativecommons.org",
-            "port": 2096,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -154,7 +154,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/FWUyMSCvPAdF?ed=2048"
+          "path": "/Rxfq2bFuV5wH?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -196,7 +196,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/0I8sH5dT6WDi?ed=2048"
+          "path": "/luFaxjPmePLI?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -238,7 +238,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/LZRoPG4jslrD?ed=2048"
+          "path": "/GMRX093ncf5f?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -280,7 +280,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/jFTGg19BnM2K?ed=2048"
+          "path": "/6An0yYshi9H3?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -305,7 +305,7 @@
         "vnext": [
           {
             "address": "go.inmobi.com",
-            "port": 2053,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -322,7 +322,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/w772X0bIRtRI?ed=2048"
+          "path": "/9XIFWZXMOkcU?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -364,7 +364,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/jx87Bi5rdK1S?ed=2048"
+          "path": "/jFWciwAk2KSX?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -389,7 +389,7 @@
         "vnext": [
           {
             "address": "www.wto.org",
-            "port": 2087,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -406,7 +406,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/htr1ZZOKGaSA?ed=2048"
+          "path": "/JfvwqcxH7371?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -431,7 +431,7 @@
         "vnext": [
           {
             "address": "chatgpt.com",
-            "port": 2053,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -448,7 +448,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/gqH0wpfnlXOw?ed=2048"
+          "path": "/CuagaxqnV6en?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -473,7 +473,7 @@
         "vnext": [
           {
             "address": "medium.com",
-            "port": 443,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -490,7 +490,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/hxWOk0lb5Fbx?ed=2048"
+          "path": "/hi9AEt09cWh3?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -532,7 +532,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/EFtIth99QAYv?ed=2048"
+          "path": "/hzQB0NQ0FRUo?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -557,7 +557,7 @@
         "vnext": [
           {
             "address": "nodejs.org",
-            "port": 8443,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -574,7 +574,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/88tTt6p7Jlpr?ed=2048"
+          "path": "/2ri1BSK6e2bp?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -599,7 +599,7 @@
         "vnext": [
           {
             "address": "linkerd.io",
-            "port": 2096,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -616,7 +616,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/tpglhoyfoM58?ed=2048"
+          "path": "/4TQej2TXKC0v?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -641,7 +641,7 @@
         "vnext": [
           {
             "address": "harbor.io",
-            "port": 2096,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -658,7 +658,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/lTZFLmw2hPdm?ed=2048"
+          "path": "/WjBbiuxWJ2Ol?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -683,7 +683,7 @@
         "vnext": [
           {
             "address": "npmjs.com",
-            "port": 8443,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -700,7 +700,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/6E0wCB4t5L9M?ed=2048"
+          "path": "/zfmhJ6Kpb5rp?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -725,7 +725,7 @@
         "vnext": [
           {
             "address": "csgo.com",
-            "port": 443,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -742,7 +742,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/93AGtLQYwJ2Y?ed=2048"
+          "path": "/W1rTQMfduaGE?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -767,7 +767,7 @@
         "vnext": [
           {
             "address": "fbi.gov",
-            "port": 2083,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -784,7 +784,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/Al7OIXYDMV2a?ed=2048"
+          "path": "/WkbWNUtjk4Ox?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -809,7 +809,7 @@
         "vnext": [
           {
             "address": "ip.sb",
-            "port": 2083,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -826,7 +826,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/RC8R5OSBnteP?ed=2048"
+          "path": "/h9z2NOPpJJmd?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -851,7 +851,7 @@
         "vnext": [
           {
             "address": "time.is",
-            "port": 2096,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -868,7 +868,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/Di2dVjRpGDlw?ed=2048"
+          "path": "/IUMekTgy44AR?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -893,7 +893,7 @@
         "vnext": [
           {
             "address": "icook.hk",
-            "port": 2083,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -910,7 +910,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/37OeqclrSH2i?ed=2048"
+          "path": "/YDywWNjYk4gd?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -935,7 +935,7 @@
         "vnext": [
           {
             "address": "codepen.io",
-            "port": 8443,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -952,7 +952,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/W8PhDVbUDEz1?ed=2048"
+          "path": "/UUG9OgnX4qe9?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -977,7 +977,7 @@
         "vnext": [
           {
             "address": "unpkg.com",
-            "port": 2087,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -994,7 +994,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/FyDSlXTBzSxZ?ed=2048"
+          "path": "/SZvnWKSEMGhq?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1019,7 +1019,7 @@
         "vnext": [
           {
             "address": "jsdelivr.com",
-            "port": 2096,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -1036,7 +1036,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/GED8RzVeFNbR?ed=2048"
+          "path": "/g6afyeJBTDk2?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1061,7 +1061,7 @@
         "vnext": [
           {
             "address": "www.cdnjs.com",
-            "port": 2096,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -1078,7 +1078,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/XhsHPyFJgdbv?ed=2048"
+          "path": "/U0cR7VuziUBs?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1103,7 +1103,7 @@
         "vnext": [
           {
             "address": "auth.vercel.com",
-            "port": 2083,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -1120,7 +1120,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/mNaAQVMCLCPH?ed=2048"
+          "path": "/94oz88i8XwzG?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1145,7 +1145,7 @@
         "vnext": [
           {
             "address": "www.udacity.com",
-            "port": 8443,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -1162,7 +1162,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/ZIEESDc2PL9D?ed=2048"
+          "path": "/uvC774TtS0EP?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1187,7 +1187,7 @@
         "vnext": [
           {
             "address": "www.gitbook.com",
-            "port": 2087,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -1204,7 +1204,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/km1td1O3VhAL?ed=2048"
+          "path": "/F0pJ6V0XMUXa?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1229,7 +1229,7 @@
         "vnext": [
           {
             "address": "www.ipaddress.my",
-            "port": 2087,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -1246,7 +1246,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/EipDMkzVhDKa?ed=2048"
+          "path": "/NCA6e0DRGuNP?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1271,7 +1271,7 @@
         "vnext": [
           {
             "address": "www.glassdoor.com",
-            "port": 2053,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -1288,7 +1288,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/5LTS8fw29r4M?ed=2048"
+          "path": "/oug85NmSQnXJ?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1313,7 +1313,7 @@
         "vnext": [
           {
             "address": "www.ipchicken.com",
-            "port": 2053,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -1330,7 +1330,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/dN1GFkz73WbP?ed=2048"
+          "path": "/rOU3ViftCsk2?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1355,7 +1355,7 @@
         "vnext": [
           {
             "address": "static.cloudflareinsights.com",
-            "port": 2087,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -1372,7 +1372,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/EXp35tWeqSnN?ed=2048"
+          "path": "/4YMyFfQs4RTP?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1397,7 +1397,7 @@
         "vnext": [
           {
             "address": "190.93.247.166",
-            "port": 2087,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -1414,7 +1414,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/4dOfBxIHwg24?ed=2048"
+          "path": "/EKP7UdAgoEJq?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1439,7 +1439,7 @@
         "vnext": [
           {
             "address": "188.114.97.91",
-            "port": 2083,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -1456,7 +1456,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/aIVf7Os53V8Z?ed=2048"
+          "path": "/lLPh0zHuPwTB?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1498,7 +1498,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/cmbJyfnmo3TH?ed=2048"
+          "path": "/kiUtWhd0jx55?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1523,7 +1523,7 @@
         "vnext": [
           {
             "address": "104.16.147.252",
-            "port": 2053,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -1540,7 +1540,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/ZgPfG247QUg0?ed=2048"
+          "path": "/a5eRS9JFollk?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1565,7 +1565,7 @@
         "vnext": [
           {
             "address": "162.159.46.168",
-            "port": 2087,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -1582,7 +1582,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/TVSfY2dY2feb?ed=2048"
+          "path": "/YUJWFNbE0dVK?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1624,7 +1624,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/F5Qbx8fkWEmM?ed=2048"
+          "path": "/S3gZbm5M53vF?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1649,7 +1649,7 @@
         "vnext": [
           {
             "address": "104.17.148.132",
-            "port": 443,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -1666,7 +1666,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/4SaPaheRQ262?ed=2048"
+          "path": "/6au5InBLXIsa?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1691,7 +1691,7 @@
         "vnext": [
           {
             "address": "141.101.115.107",
-            "port": 443,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -1708,7 +1708,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/etJ63UocnNfV?ed=2048"
+          "path": "/G8voQlD9Als8?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1750,7 +1750,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/aLJo0KmZ7cgN?ed=2048"
+          "path": "/lgfliTBgrCsU?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1792,7 +1792,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/lfUNMGP6mG02?ed=2048"
+          "path": "/POzd6JRO3xXp?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1834,7 +1834,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/YrAoPdqw2Kvp?ed=2048"
+          "path": "/julRoGSzot38?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1859,7 +1859,7 @@
         "vnext": [
           {
             "address": "188.114.98.6",
-            "port": 2087,
+            "port": 443,
             "users": [
               {
                 "encryption": "none",
@@ -1876,7 +1876,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/LcVmttESAAkJ?ed=2048"
+          "path": "/MR5UXPxxkVTf?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1901,7 +1901,7 @@
         "vnext": [
           {
             "address": "104.17.148.58",
-            "port": 443,
+            "port": 8443,
             "users": [
               {
                 "encryption": "none",
@@ -1918,7 +1918,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/mgWpuTSdhnIY?ed=2048"
+          "path": "/nOpaYO3SyfTH?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1943,7 +1943,7 @@
         "vnext": [
           {
             "address": "104.18.79.76",
-            "port": 2087,
+            "port": 2083,
             "users": [
               {
                 "encryption": "none",
@@ -1960,7 +1960,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/MFzLriJ3BYkj?ed=2048"
+          "path": "/iyN59Y46cqUu?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -1985,7 +1985,7 @@
         "vnext": [
           {
             "address": "104.18.79.73",
-            "port": 2083,
+            "port": 2087,
             "users": [
               {
                 "encryption": "none",
@@ -2002,7 +2002,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/hUtQxVgwN07U?ed=2048"
+          "path": "/jBCJEv1cWwJj?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2027,7 +2027,7 @@
         "vnext": [
           {
             "address": "190.93.245.167",
-            "port": 2083,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -2044,7 +2044,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/LFDMG7GdRKiG?ed=2048"
+          "path": "/pbkAvG3TXbMG?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2069,7 +2069,7 @@
         "vnext": [
           {
             "address": "172.67.158.158",
-            "port": 443,
+            "port": 2053,
             "users": [
               {
                 "encryption": "none",
@@ -2086,7 +2086,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/TFdr3ab1ji85?ed=2048"
+          "path": "/1ox4Ot9fPgCU?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2111,7 +2111,7 @@
         "vnext": [
           {
             "address": "188.114.97.187",
-            "port": 2053,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -2128,7 +2128,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/srASGeS8Eq7s?ed=2048"
+          "path": "/VXrmj7apUB4R?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2153,7 +2153,7 @@
         "vnext": [
           {
             "address": "104.20.29.251",
-            "port": 2087,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -2170,7 +2170,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/qOgHPvSICoee?ed=2048"
+          "path": "/vsXv1Rkc1uKl?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2195,7 +2195,7 @@
         "vnext": [
           {
             "address": "172.64.146.233",
-            "port": 2087,
+            "port": 2096,
             "users": [
               {
                 "encryption": "none",
@@ -2212,7 +2212,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/c8mMlPgPsV0l?ed=2048"
+          "path": "/X6ETI6BpudsV?ed=2048"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2254,7 +2254,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/cghxyTyaW84w?ed=2048&nat64=on"
+          "path": "/arKFd6ZmOrSR?ed=2048&nat64=on"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2268,6 +2268,38 @@
         }
       },
       "tag": "proxy-52"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 2086,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/BsWcsaOg6Sn2?ed=2048&proxyip=92.5.85.78:443"
+        }
+      },
+      "tag": "proxy-53"
     },
     {
       "mux": {
@@ -2296,49 +2328,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/B4LgZGYndgkL?ed=2048&proxyip=92.5.85.78:443"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "allowInsecure": false,
-          "show": false,
-          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
-          "fingerprint": "chrome",
-          "alpn": [
-            "http/1.1"
-          ]
-        }
-      },
-      "tag": "proxy-53"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2096,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/5fpzVtg5G0IZ?ed=2048&proxyip=31.58.138.2:443"
+          "path": "/uEpGnPaQM1h9?ed=2048&proxyip=31.58.138.2:443"
         },
         "security": "tls",
         "tlsSettings": {
@@ -2352,228 +2342,6 @@
         }
       },
       "tag": "proxy-54"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2082,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/0ZbwiL7FyNBE?ed=2048&proxyip=31.77.126.2:443"
-        }
-      },
-      "tag": "proxy-55"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2053,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/aSTIAsjE1IlK?ed=2048&proxyip=144.31.72.69:443"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "allowInsecure": false,
-          "show": false,
-          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
-          "fingerprint": "chrome",
-          "alpn": [
-            "http/1.1"
-          ]
-        }
-      },
-      "tag": "proxy-56"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 443,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/tpSEwzFty6SD?ed=2048&proxyip=3.29.240.49:443"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "allowInsecure": false,
-          "show": false,
-          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
-          "fingerprint": "chrome",
-          "alpn": [
-            "http/1.1"
-          ]
-        }
-      },
-      "tag": "proxy-57"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2082,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/GGGCZYMj7cIV?ed=2048&proxyip=130.94.1.150:443"
-        }
-      },
-      "tag": "proxy-58"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 2052,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/EpgUvGEYKNdG?ed=2048&proxyip=31.76.96.60:443"
-        }
-      },
-      "tag": "proxy-59"
-    },
-    {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false
-      },
-      "protocol": "vless",
-      "settings": {
-        "vnext": [
-          {
-            "address": "zizifnjavid.foreverstar1356.workers.dev",
-            "port": 443,
-            "users": [
-              {
-                "encryption": "none",
-                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
-                "level": 8
-              }
-            ]
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "headers": {
-            "Host": "zizifnjavid.foreverstar1356.workers.dev"
-          },
-          "path": "/iCcf1mlkvee9?ed=2048&proxyip=5.75.182.89:443"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "allowInsecure": false,
-          "show": false,
-          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
-          "fingerprint": "chrome",
-          "alpn": [
-            "http/1.1"
-          ]
-        }
-      },
-      "tag": "proxy-60"
     },
     {
       "mux": {
@@ -2602,7 +2370,229 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/mJibSQKb1iaL?ed=2048&proxyip=8.209.83.19:443"
+          "path": "/eKv4jv6NuXwG?ed=2048&proxyip=31.77.126.2:443"
+        }
+      },
+      "tag": "proxy-55"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 8443,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/yBxrkuLWTexV?ed=2048&proxyip=144.31.72.69:443"
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false,
+          "show": false,
+          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
+          "fingerprint": "chrome",
+          "alpn": [
+            "http/1.1"
+          ]
+        }
+      },
+      "tag": "proxy-56"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 2052,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/5tj2FnBAPApa?ed=2048&proxyip=3.29.240.49:443"
+        }
+      },
+      "tag": "proxy-57"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 2096,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/kPEZKvNKOi1V?ed=2048&proxyip=130.94.1.150:443"
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false,
+          "show": false,
+          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
+          "fingerprint": "chrome",
+          "alpn": [
+            "http/1.1"
+          ]
+        }
+      },
+      "tag": "proxy-58"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 443,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/2xya0uXdkSoz?ed=2048&proxyip=31.76.96.60:443"
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "allowInsecure": false,
+          "show": false,
+          "serverName": "zizifnjavid.foreverstar1356.workers.dev",
+          "fingerprint": "chrome",
+          "alpn": [
+            "http/1.1"
+          ]
+        }
+      },
+      "tag": "proxy-59"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 2052,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/LiRpwTQ83bWW?ed=2048&proxyip=5.75.182.89:443"
+        }
+      },
+      "tag": "proxy-60"
+    },
+    {
+      "mux": {
+        "concurrency": -1,
+        "enabled": false
+      },
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "zizifnjavid.foreverstar1356.workers.dev",
+            "port": 2086,
+            "users": [
+              {
+                "encryption": "none",
+                "id": "6bd588b5-f5fd-4690-8fab-35bffbab80ab",
+                "level": 8
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "headers": {
+            "Host": "zizifnjavid.foreverstar1356.workers.dev"
+          },
+          "path": "/cDv3fc2TRd3S?ed=2048&proxyip=8.209.83.19:443"
         }
       },
       "tag": "proxy-61"
@@ -2634,7 +2624,7 @@
           "headers": {
             "Host": "zizifnjavid.foreverstar1356.workers.dev"
           },
-          "path": "/aYP9hthKqwEy?ed=2048&proxyip=161.97.66.16:443"
+          "path": "/E1xSmsEglD9f?ed=2048&proxyip=161.97.66.16:443"
         },
         "security": "tls",
         "tlsSettings": {
